@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/add_device_back"
+                android:layout_width="32dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/nav_btn_back"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
+
+            <TextView
+                android:id="@+id/header_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/ap_link_aty_title"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:text="@string/ap_link_aty_first_step" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="@string/ap_link_aty_first_step_hint"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical"
+                android:textSize="16sp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/first_refresh"
+                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:background="@color/white"
+                android:text="@string/ap_link_aty_refresh"
+                android:textSize="16sp"
+                android:textColor="@color/theme" />
+
+            <Spinner
+                android:id="@+id/first_spinner"
+                android:layout_height="fill_parent"
+                android:layout_width="120dp"
+                android:layout_toLeftOf="@id/first_refresh"
+                android:gravity="right"
+                android:background="@color/white"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:text="@string/ap_link_aty_second_step" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="@string/ap_link_aty_second_step_hint"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical"
+                android:textSize="16sp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/second_refresh"
+                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:background="@color/white"
+                android:text="@string/ap_link_aty_refresh"
+                android:textSize="16sp"
+                android:textColor="@color/theme" />
+
+            <Spinner
+                android:id="@+id/second_spinner"
+                android:layout_height="fill_parent"
+                android:layout_width="120dp"
+                android:layout_toLeftOf="@+id/second_refresh"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="@string/ap_link_aty_second_step_hint2"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical"
+                android:textSize="16sp"
+                android:textColor="@color/black" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="1dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/text_pwd"
+                android:layout_width="90dp"
+                android:layout_height="fill_parent"
+                android:text="@string/ap_link_aty_wifipwd"
+                android:textColor="@color/theme"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/edit_pwd"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/text_pwd"
+                android:layout_centerVertical="true"
+                android:hint="@string/ap_link_aty_wifipwd_hint"
+                android:textColor="@color/black"
+                android:password="true"
+                android:background="@color/transparent"
+                android:textSize="17sp" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/connect"
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/selectors_btn_button"
+            android:text="@string/ap_link_aty_startlink" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:text="@string/ap_link_aty_third_step" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="@string/ap_link_aty_third_step_hint"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical"
+                android:textSize="16sp"
+                android:textColor="@color/black" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_marginTop="1dp"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/text_name"
+                android:layout_width="90dp"
+                android:layout_height="fill_parent"
+                android:text="@string/ap_link_aty_device_name"
+                android:textColor="@color/theme"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/edit_name"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/text_name"
+                android:layout_centerVertical="true"
+                android:hint="@string/ap_link_aty_device_name_hint"
+                android:background="@color/transparent"
+                android:textSize="17sp"
+                android:textColor="@color/black" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/bindDevice"
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/selectors_btn_button"
+            android:text="@string/ap_link_aty_bind_device" />
+    </LinearLayout>
+</ScrollView>

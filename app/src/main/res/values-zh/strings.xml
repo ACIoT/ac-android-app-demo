@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ac_service_android_demo</string>
+
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    <string name="xlistview_nerver_have_a_refresh">还未更新过</string>
+    <string name="xlistview_just_a_minute">刚刚</string>
+    <string name="xlistview_refreshtime_desc1">%1$d分%2$d秒前</string>
+    <string name="xlistview_refreshtime_desc2">%1$d小时%2$s</string>
+    <string name="xlistview_refreshtime_desc3">%1$d天%2$s</string>
+
+    <string name="about_aty_abouttext">关于</string>
+    <string name="about_aty_ablecloud">AbleCloud</string>
+    <string name="about_aty_copyright">智云奇点公司版权所有</string>
+    <string name="about_aty_introduction">提供云智能引擎，快速实现大规模设备智能化\n提供大数据分析引擎，轻松实现智能硬件商业智能\n提供物联网安全引擎，快速打造顶级安全的联网硬件\n\n\n</string>
+    <string name="about_aty_introduction_title">开启硬件云端智慧</string>
+
+    <string name="add_device_aty_title">添加新设备</string>
+    <string name="add_device_aty_hint">请先启动设备后点击开始连接</string>
+    <string name="add_device_aty_wifiname">Wi-Fi名称:</string>
+    <string name="add_device_aty_wifipwd">Wi-Fi密码:</string>
+    <string name="add_device_aty_wifipwd_hint">请输入网络密码</string>
+    <string name="add_device_aty_startlink">开始连接</string>
+    <string name="add_device_aty_aplink"><u>配置不上?尝试AP配网?</u></string>
+    <string name="add_device_aty_direct_bind">直接绑定</string>
+    <string name="add_device_aty_device_activate_ing">正在激活设备，请稍后。。。</string>
+    <string name="add_device_aty_re_activate">重新激活</string>
+    <string name="add_device_aty_choose_device_to_bind">已配网成功的设备列表...\n点击选择设备进行绑定</string>
+    <string name="add_device_aty_device_is_bounded">该设备已被绑定</string>
+    <string name="add_deviec_aty_input_devicename_to_bind">请输入设备名字进行绑定</string>
+    <string name="add_device_aty_confirmbtn_text">确定</string>
+    <string name="add_device_aty_device_bind_success">设备%1$d绑定成功</string>
+    <string name="add_device_aty_bind_status_unknown">未知</string>
+    <string name="add_device_aty_bind_status_bind">已绑定</string>
+    <string name="add_device_aty_bind_status_unbind">未绑定</string>
+
+    <string name="ap_link_aty_title">AP配网模式</string>
+    <string name="ap_link_aty_first_step">第一步</string>
+    <string name="ap_link_aty_first_step_hint">请选择设备的热点并连接</string>
+    <string name="ap_link_aty_refresh">刷新</string>
+    <string name="ap_link_aty_second_step">第二步</string>
+    <string name="ap_link_aty_second_step_hint">请选择您要配置的WiFi</string>
+    <string name="ap_link_aty_second_step_hint2">请输入您选择的WiFi密码并点击开始连接</string>
+    <string name="ap_link_aty_wifipwd">Wi-Fi密码:</string>
+    <string name="ap_link_aty_wifipwd_hint">请输入WiFi密码</string>
+    <string name="ap_link_aty_startlink">开始连接</string>
+    <string name="ap_link_aty_third_step">第三步</string>
+    <string name="ap_link_aty_third_step_hint">填写设备名字并绑定设备</string>
+    <string name="ap_link_aty_device_name">设备名字:</string>
+    <string name="ap_link_aty_device_name_hint">请为您的设备起个名字</string>
+    <string name="ap_link_aty_bind_device">绑定设备</string>
+    <string name="ap_link_aty_refresh_available_hotspot">刷新手机可用的热点</string>
+    <string name="ap_link_aty_connectbtn_pressed_toast_hint">请按照步骤连接设备热点并选择需要配置的WiFi</string>
+    <string name="ap_link_aty_connectbtn_pressed_device_activate_ing">正在激活设备，请手动切换当前热点到%1$s</string>
+    <string name="ap_link_aty_binddevicebtn_pressed_toast_hint">请按照步骤在成功激活设备后绑定</string>
+    <string name="ap_link_aty_choosetext">选择</string>
+    <string name="ap_link_aty_begin_autolink_hotspot">开始自动连接该热点</string>
+    <string name="ap_link_aty_autolink_hotspot_failed">自动连接该热点失败,请尝试手动连接</string>
+    <string name="ap_link_aty_no_available_hotspot">没有可用的WiFi热点</string>
+    <string name="ap_link_aty_get_wifilist_ing">连接成功,正在获取可用的WiFi列表</string>
+    <string name="ap_link_aty_to_second_step_toast_hint">搜索成功,进入第二步操作选择即将要配置的WiFi</string>
+    <string name="ap_link_aty_device_no_wifi_hotspot_toast_hint">设备上没有可用的WiFi热点,无法进行AP配网</string>
+    <string name="ap_link_aty_please_click_refreshbtn_in_second_step">搜索失败,请确定连上设备热点后点击第二步的刷新按钮</string>
+    <string name="ap_link_aty_device_activate_success_toast_hint">激活成功</string>
+    <string name="ap_link_aty_activate_success_you_can_bind">设备激活成功，请开始绑定设备</string>
+    <string name="ap_link_aty_device_activate_fail_toast_hint">配置失败:%1$s</string>
+    <string name="ap_link_aty_device_bind_success">设备%1$d绑定成功</string>
+    <string name="ap_link_aty_device_bind_fail">绑定失败%1$s</string>
+
+    <string name="bind_device_aty_title">绑定设备</string>
+    <string name="bind_device_aty_hint">设备连接上云端后输入物理ID进行绑定</string>
+    <string name="bind_device_aty_physicalid">物理ID:</string>
+    <string name="bind_device_aty_physicalid_hint">请输入设备物理ID</string>
+    <string name="bind_device_aty_device_name">设备名字:</string>
+    <string name="bind_device_aty_devicename_hint">请为您的设备起个名字</string>
+    <string name="bind_device_aty_bindtext">绑 定</string>
+    <string name="bind_device_aty_device_bind_success">设备%1$d绑定成功</string>
+
+    <string name="config_detail_aty_title">配置信息</string>
+    <string name="config_detail_aty_domain">Domain:</string>
+    <string name="config_detail_aty_domainid">DomainId:</string>
+    <string name="config_detail_aty_subdomain">subDomain:</string>
+    <string name="config_detail_aty_choose_linktype">请选择设备配网类型</string>
+    <string name="config_detail_aty_confirm">确定</string>
+
+    <string name="configuration_aty_title">配置</string>
+    <string name="configuration_aty_domain">Domain:</string>
+    <string name="configuration_aty_domain_hint">请输入Domain</string>
+    <string name="configuration_aty_domainid">DomainId:</string>
+    <string name="configuration_aty_domainid_hint">请输入一个整数</string>
+    <string name="configuration_aty_subdomain">subDomain:</string>
+    <string name="configuration_aty_subdomain_hint">请输入subDomain</string>
+    <string name="configuration_aty_router">Router:</string>
+    <string name="configuration_aty_router_hint">默认test.ablecloud.cn</string>
+    <string name="configuration_aty_choose_communication_form">请选择通讯格式</string>
+    <string name="configuration_aty_choose_device_type">请选择设备类型</string>
+    <string name="configuration_aty_configtext">配置</string>
+    <string name="configuration_aty_domainid_error_toast_hint">domainId填写错误</string>
+    <string name="configuration_aty_configsuccess">配置成功</string>
+
+    <string name="cus_binary_aty_switch_record">开关记录</string>
+    <string name="cus_binary_aty_title">二进制自定义消息</string>
+    <string name="cus_binary_aty_interval">间隔时间,默认5s</string>
+    <string name="cus_binary_aty_start">开始</string>
+    <string name="cus_binary_aty_input_msgcode">输入下发消息的msgCode</string>
+    <string name="cus_binary_aty_msgcode">68</string>
+    <string name="cus_binary_aty_input_payload">输入下发消息的消息Payload（使用十六进制表示）</string>
+    <string name="cus_binary_aty_input_payload_hint">如0123456789ABCDEF(可以使用空格和逗号隔开)</string>
+    <string name="cus_binary_aty_device_response_msgcode">设备响应的msgCode</string>
+    <string name="cus_binary_aty_device_response_hexstr">设备响应的16进制消息</string>
+    <string name="cus_binary_aty_starttext">开始</string>
+    <string name="cus_binary_aty_stoptext">停止</string>
+    <string name="cus_binary_aty_please_input_valid_hexstr">请输入一个有效数</string>
+    <string name="cus_binary_aty_send0">send:0</string>
+    <string name="cus_binary_aty_get0">get:0</string>
+
+    <string name="cus_json_aty_switch_record">开关记录</string>
+    <string name="cus_json_aty_title">json自定义消息</string>
+    <string name="cus_json_aty_msgcode">message code</string>
+    <string name="cus_json_aty_all">全部</string>
+    <string name="cus_json_aty_send">发 送</string>
+    <string name="cus_json_aty_please_choose_data_package">请选择数据包（若没有数据包情况下请到AbleCloud控制台新建数据包）</string>
+    <string name="cus_json_aty_send_success">发送成功:%1$s</string>
+    <string name="cus_json_aty_please_create_data_package">请在控制台新建数据包</string>
+
+    <string name="history_record_aty_reset_wifipwd">重置wifi密码</string>
+    <string name="history_record_aty_switch_record">开关记录</string>
+    <string name="history_record_aty_subscribe_success">订阅设备数据成功</string>
+    <string name="history_record_aty_subscribe_fail">订阅设备数据失败</string>
+    <string name="history_record_aty_open_light">开灯</string>
+    <string name="history_record_aty_close_light">关灯</string>
+
+    <string name="login_aty_title">登录</string>
+    <string name="login_aty_domainconfig">Domain配置</string>
+    <string name="login_aty_username">用户名</string>
+    <string name="login_aty_input_phone_or_email">请输入手机号或邮箱</string>
+    <string name="login_aty_password">密码</string>
+    <string name="login_aty_input_password">请输入密码</string>
+    <string name="login_aty_newuser_sigup">新用户注册</string>
+    <string name="login_aty_loginbtn">登录</string>
+    <string name="login_aty_username_or_pwd_cannot_be_empty">用户名或密码不能为空</string>
+
+    <string name="main_aty_add_new_device">添加新设备</string>
+    <string name="main_aty_ablecloud">AbleCloud</string>
+    <string name="main_aty_nodevice">无绑定的设备，请绑定添加设备</string>
+    <string name="main_aty_openlight_success">开灯成功</string>
+    <string name="main_aty_openlight_fail">开灯失败</string>
+    <string name="main_aty_closelight_success">关灯成功</string>
+    <string name="main_aty_closelight_fail">关灯失败</string>
+    <string name="main_aty_device_offline">%1$s(不在线)</string>
+    <string name="main_aty_device_cloud_online">%1$s(云端在线)</string>
+    <string name="main_aty_device_lan_online">%1$s(局域网在线)</string>
+    <string name="main_aty_device_cloud_and_lan_online">%1$s(云端与局域网在线)</string>
+    <string name="main_aty_delete_device_title">删除设备</string>
+    <string name="main_aty_delete_device_desc">是否删除设备</string>
+    <string name="main_aty_delete_device_confirm">是</string>
+    <string name="main_aty_delete_device_cancle">否</string>
+    <string name="main_aty_delete_device_success">删除成功</string>
+    <string name="main_aty_ota_upgrade_title">发现新的OTA版本,是否确认升级?</string>
+    <string name="main_aty_ota_upgrade_desc">设备ID:%1$s\n设备名:%2$s\n目标版本:%3$s\n更新日志:\n%4$s</string>
+    <string name="main_aty_ota_upgrade_confirm">确认</string>
+    <string name="main_aty_ota_upgrade_cancle">取消</string>
+    <string name="main_aty_ota_upgrade_toast_hint">确认升级,设备将开始下载OTA版本</string>
+
+
+    <string name="menu_aty_title">个人中心</string>
+    <string name="menu_aty_look_configinfo">查看当前配置信息</string>
+    <string name="menu_aty_about">关于</string>
+    <string name="menu_aty_logout">退出登录</string>
+
+    <string name="register_aty_title">注册</string>
+    <string name="register_aty_phonenumber">手机号</string>
+    <string name="register_aty_input_phonenumber">请输入手机号</string>
+    <string name="register_aty_email">邮箱</string>
+    <string name="register_aty_input_email">请输入邮箱</string>
+    <string name="register_aty_username">用户名</string>
+    <string name="register_aty_input_username">请输入用户名</string>
+    <string name="register_aty_password">密码</string>
+    <string name="register_aty_input_password">请输入密码</string>
+    <string name="register_aty_repeat_pwd">重复密码</string>
+    <string name="register_aty_input_pwd_again">请输入重复密码</string>
+    <string name="register_aty_vercode">验证码</string>
+    <string name="register_aty_vercode_hint">验证码</string>
+    <string name="register_aty_fetch_vercode">发送验证码</string>
+    <string name="register_aty_register">注册</string>
+    <string name="register_aty_wifiname">Wi-Fi名称:</string>
+    <string name="register_aty_wifipwd">Wi-Fi密码:</string>
+    <string name="register_aty_input_wifipwd">请输入wifi密码</string>
+    <string name="register_aty_resettext">重置设备Wifi</string>
+    <string name="register_aty_phone_or_email_cannot_be_empty">手机号或邮箱不能为空</string>
+    <string name="register_aty_repeat_pwd_incorrect">重复密码错误</string>
+    <string name="register_aty_fetch_vercode_success">验证码发送成功</string>
+    <string name="register_aty_register_success">注册成功</string>
+
+    <string name="reset_wifi_aty_reset_ing">正在重置设备wifi，请稍后。。。</string>
+    <string name="reset_wifi_aty_reset_device_wifi">重置设备wifi</string>
+    <string name="reset_wifi_aty_reset_device_wifi_success">重置设备wifi成功</string>
+    <string name="reset_wifi_aty_title">重置wifi密码</string>
+    <string name="reset_wifi_aty_please_start_device">请先启动设备后再点击重置密码</string>
+
+    <string name="add_device_adapter_unknown">未知</string>
+
+    <string name="data_points_switch1">开关</string>
+    <string name="data_points_switch2">switch</string>
+    <string name="data_points_adapter_hint">请输入该数据点下的值</string>
+
+    <string name="list_device_adapter_closelight">关灯</string>
+    <string name="list_device_open_light">开灯</string>
+
+</resources>

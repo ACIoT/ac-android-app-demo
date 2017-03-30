@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg">
+
+    <RelativeLayout
+        android:id="@+id/cus_header_rr"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/send_back"
+            android:layout_width="32dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/nav_btn_back"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+
+        <TextView
+            android:id="@+id/send_history"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginRight="8dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:textColor="@color/theme"
+            android:textSize="15sp"
+            android:text="@string/cus_json_aty_switch_record" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/cus_json_aty_title"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/cus_code_rr"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/cus_header_rr"
+        android:layout_marginTop="16dp"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="@string/cus_json_aty_msgcode"
+            android:layout_marginLeft="15dp"
+            android:gravity="center_vertical"
+            android:textSize="16sp"
+            android:textColor="@color/black" />
+
+        <Spinner
+            android:id="@+id/req_code"
+            android:layout_height="fill_parent"
+            android:layout_width="100dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:layout_marginRight="15dp"
+            android:background="@color/white"
+            android:textSize="16sp"
+            android:text="@string/cus_json_aty_all" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/cus_send"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true"
+        android:text="@string/cus_json_aty_send"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:background="@color/theme" />
+
+    <ListView
+        android:id="@+id/data_points"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/cus_code_rr"
+        android:layout_above="@id/cus_send"
+        android:layout_marginTop="16dp"
+        android:background="@color/white" />
+</RelativeLayout>
