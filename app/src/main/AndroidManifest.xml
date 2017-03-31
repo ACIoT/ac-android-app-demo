@@ -1,64 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.accloud.ac_service_android_demo"
-    android:versionCode="1"
-    android:versionName="1.0.0">
+    package="ablecloud.matrix.app.demo">
 
     <application
-        android:name=".application.MainApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/launcher"
         android:label="@string/app_name"
-        android:icon="@drawable/ic_launcher"
-        android:theme="@android:style/Theme.Light.NoTitleBar">
+        android:theme="@style/AppTheme"
+        android:name="ablecloud.matrix.app.demo.MainApplication">
         <activity
-            android:name=".activity.LoginActivity"
-            android:label="@string/app_name">
+            android:name="ablecloud.matrix.app.demo.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.AddDeviceActivity" />
-        <activity android:name=".activity.APDeviceActivity" />
-        <activity android:name=".activity.BindDeviceActivity" />
-        <activity android:name=".activity.MenuActivity" />
-        <activity android:name=".activity.AboutActivity" />
-        <activity android:name=".activity.ConfigurationActivity" />
-        <activity android:name=".activity.ConfigDetailActivity" />
-        <activity android:name=".activity.HistoryRecordActivity" />
-        <activity android:name=".activity.ResetWifiActivity" />
-        <activity android:name=".activity.CustomBinaryActivity" />
+
         <activity
-            android:name=".activity.CustomJsonActivity"
-            android:windowSoftInputMode="adjustPan" />
+            android:name="ablecloud.matrix.app.demo.LocalDeviceListActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/local_device_list" />
 
-        <meta-data
-            android:name="UMENG_CHANNEL"
-            android:value="test"></meta-data>
-
-        <!-- [Required] 对应"产品管理->产品列表->主域名" -->
-        <meta-data
-            android:name="major-domain"
-            android:value="ablecloud" />
-        <!-- [Required] 对应"个人信息->个人信息->开发者ID" -->
-        <meta-data
-            android:name="developer-id"
-            android:value="2" />
-        <!-- [Required] 对应"密钥对管理->全部密钥对"，选择已启用的任意一对。-->
-        <meta-data
-            android:name="access-key"
-            android:value="43e9e31a40ad2dbe809bdb8e8170badd" />
-        <meta-data
-            android:name="secret-key"
-            android:value="e48c15c440cef1f0805dee82f450cee8" />
+        <activity
+            android:name="ablecloud.matrix.app.demo.DeviceListActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/cloud_device_list" />
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 </manifest>

@@ -1,73 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg">
+    android:fitsSystemWindows="true">
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:background="@color/white"
-        android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/left_menu"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:background="@drawable/nav_btn_sidebar"
-            android:focusable="false"
-            android:focusableInTouchMode="false" />
+        <Button
+            android:id="@+id/local_device_list"
+            android:text="@string/local_device_list"
+            android:onClick="onClick"
+            style="@style/Widget.Button" />
 
-        <TextView
-            android:id="@+id/right_add_device"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginRight="8dp"
-            android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
-            android:textColor="@color/theme"
-            android:textSize="15sp"
-            android:text="@string/main_aty_add_new_device" />
-
-        <TextView
-            android:id="@+id/header_title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="@string/main_aty_ablecloud"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-    </RelativeLayout>
-
-    <FrameLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="16dp">
-
-        <com.accloud.ac_service_android_demo.utils.XListView
-            android:id="@+id/device_list"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:dividerHeight="1dp"
-            android:headerDividersEnabled="false" />
-
-        <TextView
-            android:id="@+id/no_device"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:gravity="center"
-            android:textSize="30sp"
-            android:visibility="invisible"
-            android:layout_margin="50dp"
-            android:textColor="@color/theme"
-            android:text="@string/main_aty_nodevice" />
-    </FrameLayout>
-</LinearLayout>
+        <Button
+            android:id="@+id/cloud_device_list"
+            android:text="@string/cloud_device_list"
+            android:onClick="onClick"
+            style="@style/Widget.Button" />
+    </LinearLayout>
+</ScrollView>

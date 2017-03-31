@@ -1,0 +1,22 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="Base.AppTheme" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/colorPrimaryDeep</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimaryGreen</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowBackground">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="AppTheme" parent="Base.AppTheme" />
+
+    <style name="Widget" />
+
+    <style name="Widget.Button" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+        <item name="android:minHeight">?android:attr/listPreferredItemHeightLarge</item>
+    </style>
+</resources>
