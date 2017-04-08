@@ -195,7 +195,7 @@ public class APDeviceActivity extends Activity implements View.OnClickListener {
     }
 
     private void getSsidList() {
-        wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
+        wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
         scanResultList = wifiManager.getScanResults();
         if (scanResultList != null && scanResultList.size() > 0) {
             allSsidList.clear();
