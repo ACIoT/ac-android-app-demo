@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.accloud.ac_service_android_demo"
-    android:versionCode="1"
-    android:versionName="1.0.0">
+    package="com.accloud.ac_service_android_demo">
 
     <application
         android:name=".application.MainApplication"

@@ -8,6 +8,8 @@ android {
         applicationId "com.accloud.ac_service_android_demo"
         minSdkVersion 19
         targetSdkVersion 21
+        versionCode 125
+        versionName "v1.2.5"
     }
 
     buildTypes {
