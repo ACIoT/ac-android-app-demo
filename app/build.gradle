@@ -1,4 +1,10 @@
+import com.android.builder.core.BuilderConstants
+
 apply plugin: 'com.android.application'
+
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
     compileSdkVersion 25
@@ -10,12 +16,37 @@ android {
         targetSdkVersion 21
         versionCode 125
         versionName "v1.2.5"
+
+        setProperty("archivesBaseName", "${project.getParent().getName()}-${versionName}")
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    applicationVariants.all { variant ->
+        if (variant.buildType.name == BuilderConstants.RELEASE) {
+            def assembleTask = variant.assemble
+            assembleTask.doLast {
+                copy {
+                    from variant.outputs[0].outputFile
+                    into '../'
+                }
+                println "Publish output file of task '${assembleTask.name}'"
+            }
         }
     }
 }
