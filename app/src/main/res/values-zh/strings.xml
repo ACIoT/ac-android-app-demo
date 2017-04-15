@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Info -->
+    <string name="error_unknown">%1$d：%2$s</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_acount">账户、电话或邮件</string>
+    <string name="prompt_password">登录密码</string>
+    <string name="action_sign_in">登录</string>
+    <string name="action_sign_in_short">登录</string>
+    <string name="error_incorrect_password">密码错误</string>
+    <string name="error_field_required">请填写此项</string>
+    <string name="account_not_found">账户不存在</string>
+    <string name="account_authentication_error">密码错误</string>
+</resources>

@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 
 ext {
     appName = 'MatrixApp'
+    AC_MODE_TEST = '0'
+    AC_MODE_PRODUCTION = '1'
 }
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
@@ -21,6 +23,10 @@ android {
         setProperty("archivesBaseName", "${project.getParent().getName()}-${versionName}")
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'long', 'AC_MAJOR_ID', '3L'
+        buildConfigField 'String', 'AC_MAJOR_NAME', '"ablecloud"'
+        buildConfigField 'int', 'AC_MODE', AC_MODE_TEST
     }
 
     dataBinding {
@@ -39,7 +45,7 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix ".debug"
-            versionNameSuffix ".debug"
+            versionNameSuffix ".debug.${new Date().format('yyyyMMdd')}"
             resValue "string", "app_name", "${appName}@Debug"
         }
         release {
@@ -52,12 +58,23 @@ android {
     }
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.2.0'
+    compile 'com.android.support:design:25.2.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+
+    compile 'com.jakewharton:butterknife:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.mobsandgeeks:android-saripaar:2.0.3'
 }
