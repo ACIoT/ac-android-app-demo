@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Info -->
+    <string name="error_unknown" translatable="false">%1$d：%2$s</string>
+
     <!-- Strings related to login -->
     <string name="prompt_acount">Account/Phone/Email</string>
     <string name="prompt_password">Password</string>
@@ -8,4 +11,10 @@
     <string name="error_field_required">Required</string>
     <string name="account_not_found">Account not found</string>
     <string name="account_authentication_error">Incorrect password</string>
+
+    <!-- Device online status -->
+    <string name="device_offline">Offline</string>
+    <string name="device_local_online">Local online</string>
+    <string name="device_cloud_online">Cloud online</string>
+    <string name="device_both_online">Both online</string>
 </resources>
