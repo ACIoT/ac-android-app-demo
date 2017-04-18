@@ -1,9 +1,9 @@
 package ablecloud.matrix.app.demo;
 
+import android.database.DataSetObserver;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -22,30 +22,75 @@ import ablecloud.matrix.app.demo.databinding.ListItemDeviceBinding;
 import ablecloud.support.databinding.BindingHolder;
 import ablecloud.support.databinding.CountObservable;
 import ablecloud.support.widget.ArrayRecyclerAdapter;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrUIHandler;
+import in.srain.cube.views.ptr.indicator.PtrIndicator;
 
 /**
  * Created by wangkun on 31/03/2017.
  */
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
 
     private ActivityMainBinding mBinding;
     private DeviceAdapter mDeviceAdapter;
 
     private List<ACProduct> mProducts = new ArrayList<>();
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mDeviceAdapter = new DeviceAdapter();
         mBinding.list.getRefreshView().setAdapter(mDeviceAdapter);
+        mBinding.list.addPtrUIHandler(ptrUIHandler);
         mBinding.setCountObservable(CountObservable.create(mDeviceAdapter));
 
         AC.productMgr().fetchAllProducts(mProductCallback);
-        AC.bindMgr().listDevicesWithStatus(mDeviceCallback);
+        deviceManager.registerDataSetObserver(deviceObserver);
+        deviceManager.queryDevices();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        deviceManager.unregisterDataSetObserver(deviceObserver);
+    }
+
+    private PtrUIHandler ptrUIHandler = new PtrUIHandler() {
+        @Override
+        public void onUIReset(PtrFrameLayout frame) {
+
+        }
+
+        @Override
+        public void onUIRefreshPrepare(PtrFrameLayout frame) {
+
+        }
+
+        @Override
+        public void onUIRefreshBegin(PtrFrameLayout frame) {
+            deviceManager.queryDevices();
+        }
+
+        @Override
+        public void onUIRefreshComplete(PtrFrameLayout frame) {
+
+        }
+
+        @Override
+        public void onUIPositionChange(PtrFrameLayout frame, boolean isUnderTouch, byte status, PtrIndicator ptrIndicator) {
+
+        }
+    };
+
+    private DataSetObserver deviceObserver = new DataSetObserver() {
+        @Override
+        public void onChanged() {
+            mDeviceAdapter.clear();
+            mDeviceAdapter.addAll(deviceManager.getDevices());
+        }
+    };
 
     private PayloadCallback<List<ACProduct>> mProductCallback = new PayloadCallback<List<ACProduct>>() {
         @Override
@@ -53,20 +98,6 @@ public class MainActivity extends AppCompatActivity {
             mProducts.clear();
             mProducts.addAll(acProducts);
             mDeviceAdapter.notifyDataSetChanged();
-        }
-
-        @Override
-        public void error(ACException e) {
-            Log.d(TAG, e.getMessage());
-        }
-    };
-
-    private PayloadCallback<List<ACUserDevice>> mDeviceCallback = new PayloadCallback<List<ACUserDevice>>() {
-        @Override
-        public void success(List<ACUserDevice> acUserDevices) {
-            mDeviceAdapter.clear();
-            mDeviceAdapter.addAll(acUserDevices);
-            Log.d(TAG, acUserDevices.get(0).toString());
         }
 
         @Override

@@ -9,9 +9,18 @@ import com.accloud.cloudservice.AC;
  */
 
 public class MainApplication extends Application {
+
+    private ApplicationComponent applicationComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();
         AC.init(this, BuildConfig.AC_MAJOR_NAME, BuildConfig.AC_MAJOR_ID, BuildConfig.AC_MODE);
+
+        applicationComponent = DaggerApplicationComponent.create();
+    }
+
+    public ApplicationComponent getApplicationComponent() {
+        return applicationComponent;
     }
 }
