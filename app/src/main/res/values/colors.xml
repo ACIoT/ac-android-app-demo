@@ -5,5 +5,6 @@
     <color name="colorPrimaryDeep">#35324A</color>
     <color name="colorPrimaryDark">#8835324A</color>
     <color name="colorPrimaryGreen">#00B0A0</color>
+    <color name="colorPrimaryPurple">#7173CD</color>
     <color name="colorBackground">#303030</color>
 </resources>

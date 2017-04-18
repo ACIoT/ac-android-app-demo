@@ -2,6 +2,7 @@
 <resources>
     <!-- Info -->
     <string name="error_unknown" translatable="false">%1$d：%2$s</string>
+    <string name="unknown_value" translatable="false">N/A</string>
 
     <!-- Strings related to login -->
     <string name="prompt_acount">Account/Phone/Email</string>

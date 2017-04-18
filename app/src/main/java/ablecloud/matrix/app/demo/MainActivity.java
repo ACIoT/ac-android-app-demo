@@ -11,8 +11,10 @@ import android.view.ViewGroup;
 import com.accloud.cloudservice.AC;
 import com.accloud.cloudservice.PayloadCallback;
 import com.accloud.service.ACException;
+import com.accloud.service.ACProduct;
 import com.accloud.service.ACUserDevice;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ablecloud.matrix.app.demo.databinding.ActivityMainBinding;
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mBinding;
     private DeviceAdapter mDeviceAdapter;
 
+    private List<ACProduct> mProducts = new ArrayList<>();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,14 +43,16 @@ public class MainActivity extends AppCompatActivity {
         mBinding.list.getRefreshView().setAdapter(mDeviceAdapter);
         mBinding.setCountObservable(CountObservable.create(mDeviceAdapter));
 
+        AC.productMgr().fetchAllProducts(mProductCallback);
         AC.bindMgr().listDevicesWithStatus(mDeviceCallback);
     }
 
-    private PayloadCallback<List<ACUserDevice>> mDeviceCallback = new PayloadCallback<List<ACUserDevice>>() {
+    private PayloadCallback<List<ACProduct>> mProductCallback = new PayloadCallback<List<ACProduct>>() {
         @Override
-        public void success(List<ACUserDevice> acUserDevices) {
-            mDeviceAdapter.clear();
-            mDeviceAdapter.addAll(acUserDevices);
+        public void success(List<ACProduct> acProducts) {
+            mProducts.clear();
+            mProducts.addAll(acProducts);
+            mDeviceAdapter.notifyDataSetChanged();
         }
 
         @Override
@@ -55,7 +61,21 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private static class DeviceAdapter extends ArrayRecyclerAdapter<ACUserDevice, BindingHolder> {
+    private PayloadCallback<List<ACUserDevice>> mDeviceCallback = new PayloadCallback<List<ACUserDevice>>() {
+        @Override
+        public void success(List<ACUserDevice> acUserDevices) {
+            mDeviceAdapter.clear();
+            mDeviceAdapter.addAll(acUserDevices);
+            Log.d(TAG, acUserDevices.get(0).toString());
+        }
+
+        @Override
+        public void error(ACException e) {
+            Log.d(TAG, e.getMessage());
+        }
+    };
+
+    private class DeviceAdapter extends ArrayRecyclerAdapter<ACUserDevice, BindingHolder> {
         @Override
         public BindingHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
@@ -65,8 +85,19 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(BindingHolder holder, int position) {
             ListItemDeviceBinding binding = (ListItemDeviceBinding) holder.binding;
-            binding.setVariable(BR.device, getItem(position));
+            ACUserDevice device = getItem(position);
+            binding.setVariable(BR.device, device);
+            binding.setVariable(BR.product, findProduct(device));
             binding.executePendingBindings();
         }
+    }
+
+    private ACProduct findProduct(ACUserDevice device) {
+        for (ACProduct product : mProducts) {
+            if (product.sub_domain_name.equals(device.subDomain)) {
+                return product;
+            }
+        }
+        return null;
     }
 }

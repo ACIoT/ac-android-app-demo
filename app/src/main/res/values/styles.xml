@@ -7,6 +7,11 @@
         <item name="colorAccent">@color/colorPrimaryGreen</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowBackground">@color/colorPrimaryDark</item>
+        <!-- Custom -->
+        <item name="status_offline">@color/colorPrimaryLight</item>
+        <item name="status_local">@color/colorPrimaryPurple</item>
+        <item name="status_cloud">@color/colorPrimaryPurple</item>
+        <item name="status_both">@color/colorPrimaryGreen</item>
     </style>
 
     <style name="Base.AppTheme.Light" parent="Theme.AppCompat.Light">
@@ -15,6 +20,11 @@
         <item name="colorAccent">@color/colorPrimaryDeep</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowBackground">@color/colorPrimaryLight</item>
+        <!-- Custom -->
+        <item name="status_offline">@color/colorPrimaryLight</item>
+        <item name="status_local">@color/colorPrimaryPurple</item>
+        <item name="status_cloud">@color/colorPrimaryPurple</item>
+        <item name="status_both">@color/colorPrimaryGreen</item>
     </style>
 
     <style name="AppTheme" parent="Base.AppTheme.Light" />

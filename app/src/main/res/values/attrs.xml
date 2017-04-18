@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="text_color_status">
+        <attr name="status_offline" format="color" />
+        <attr name="status_local" format="color" />
+        <attr name="status_cloud" format="color" />
+        <attr name="status_both" format="color" />
+    </declare-styleable>
+</resources>
