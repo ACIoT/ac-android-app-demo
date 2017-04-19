@@ -1,11 +1,14 @@
 package ablecloud.matrix.app.demo;
 
+import android.content.Context;
+import android.content.Intent;
 import android.database.DataSetObserver;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.accloud.cloudservice.AC;
@@ -19,6 +22,7 @@ import java.util.List;
 
 import ablecloud.matrix.app.demo.databinding.ActivityMainBinding;
 import ablecloud.matrix.app.demo.databinding.ListItemDeviceBinding;
+import ablecloud.matrix.app.demo.util.IntentExtra;
 import ablecloud.support.databinding.BindingHolder;
 import ablecloud.support.databinding.CountObservable;
 import ablecloud.support.widget.ArrayRecyclerAdapter;
@@ -33,18 +37,18 @@ import in.srain.cube.views.ptr.indicator.PtrIndicator;
 public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
 
-    private ActivityMainBinding mBinding;
-    private DeviceAdapter mDeviceAdapter;
+    private ActivityMainBinding binding;
+    private DeviceAdapter deviceAdapter;
 
-    private List<ACProduct> mProducts = new ArrayList<>();
+    private List<ACProduct> products = new ArrayList<>();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mDeviceAdapter = new DeviceAdapter();
-        mBinding.list.getRefreshView().setAdapter(mDeviceAdapter);
-        mBinding.list.addPtrUIHandler(ptrUIHandler);
-        mBinding.setCountObservable(CountObservable.create(mDeviceAdapter));
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        deviceAdapter = new DeviceAdapter();
+        binding.list.getRefreshView().setAdapter(deviceAdapter);
+        binding.list.addPtrUIHandler(ptrUIHandler);
+        binding.setCountObservable(CountObservable.create(deviceAdapter));
 
         AC.productMgr().fetchAllProducts(mProductCallback);
         deviceManager.registerDataSetObserver(deviceObserver);
@@ -87,17 +91,17 @@ public class MainActivity extends BaseActivity {
     private DataSetObserver deviceObserver = new DataSetObserver() {
         @Override
         public void onChanged() {
-            mDeviceAdapter.clear();
-            mDeviceAdapter.addAll(deviceManager.getDevices());
+            deviceAdapter.clear();
+            deviceAdapter.addAll(deviceManager.getDevices());
         }
     };
 
     private PayloadCallback<List<ACProduct>> mProductCallback = new PayloadCallback<List<ACProduct>>() {
         @Override
         public void success(List<ACProduct> acProducts) {
-            mProducts.clear();
-            mProducts.addAll(acProducts);
-            mDeviceAdapter.notifyDataSetChanged();
+            products.clear();
+            products.addAll(acProducts);
+            deviceAdapter.notifyDataSetChanged();
         }
 
         @Override
@@ -116,15 +120,22 @@ public class MainActivity extends BaseActivity {
         @Override
         public void onBindViewHolder(BindingHolder holder, int position) {
             ListItemDeviceBinding binding = (ListItemDeviceBinding) holder.binding;
-            ACUserDevice device = getItem(position);
+            final ACUserDevice device = getItem(position);
             binding.setVariable(BR.device, device);
             binding.setVariable(BR.product, findProduct(device));
+            binding.getRoot().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    context.startActivity(new Intent(context, DeviceControlActivity.class).putExtra(IntentExtra.DEVICE_ID, device.deviceId));
+                }
+            });
             binding.executePendingBindings();
         }
     }
 
     private ACProduct findProduct(ACUserDevice device) {
-        for (ACProduct product : mProducts) {
+        for (ACProduct product : products) {
             if (product.sub_domain_name.equals(device.subDomain)) {
                 return product;
             }

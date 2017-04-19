@@ -50,4 +50,13 @@ public class DeviceManager {
             }
         });
     }
+
+    public ACUserDevice findDevice(long deviceId) {
+        for (ACUserDevice device : mDevices) {
+            if (device.deviceId == deviceId) {
+                return device;
+            }
+        }
+        return null;
+    }
 }

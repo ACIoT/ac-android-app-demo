@@ -1,10 +1,10 @@
 package ablecloud.matrix.app.demo;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -34,7 +34,7 @@ import butterknife.OnTextChanged;
  * Created by wangkun on 14/04/2017.
  */
 
-public class LoginActivity extends Activity implements Validator.ValidationListener {
+public class LoginActivity extends AppCompatActivity implements Validator.ValidationListener {
     private static final String TAG = "LoginActivity";
 
     @BindView(R.id.account_layout)

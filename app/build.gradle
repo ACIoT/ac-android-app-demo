@@ -20,6 +20,8 @@ android {
         versionCode 1
         versionName "1.0"
 
+        vectorDrawables.useSupportLibrary true
+
         setProperty("archivesBaseName", "${project.getParent().getName()}-${versionName}")
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

@@ -13,15 +13,22 @@ import ablecloud.matrix.app.DeviceManager;
  */
 
 public class BaseActivity extends AppCompatActivity {
+
+    ActivityComponent activityComponent;
+
     @Inject
     DeviceManager deviceManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DaggerActivityComponent.builder()
+        activityComponent = DaggerActivityComponent.builder()
                 .applicationComponent(((MainApplication) getApplication()).getApplicationComponent())
-                .build()
-                .inject(this);
+                .build();
+        activityComponent.inject(this);
+    }
+
+    public ActivityComponent getActivityComponent() {
+        return activityComponent;
     }
 }
