@@ -1,6 +1,7 @@
 package ablecloud.matrix.app.demo;
 
 import android.app.Application;
+import android.support.v7.app.AppCompatDelegate;
 
 import com.accloud.cloudservice.AC;
 
@@ -9,6 +10,10 @@ import com.accloud.cloudservice.AC;
  */
 
 public class MainApplication extends Application {
+
+    static {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
 
     private ApplicationComponent applicationComponent;
 

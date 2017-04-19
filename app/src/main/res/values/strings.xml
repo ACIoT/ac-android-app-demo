@@ -19,4 +19,11 @@
     <string name="device_local_online">Local online</string>
     <string name="device_cloud_online">Cloud online</string>
     <string name="device_both_online">Both online</string>
+
+    <!-- Light -->
+    <string name="light_on_success">Light on</string>
+    <string name="light_off_success">Light off</string>
+    <string name="light_no_response">Light does not response</string>
+    <string name="power_on" translatable="false">ON</string>
+    <string name="power_off" translatable="false">OFF</string>
 </resources>

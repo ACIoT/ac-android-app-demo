@@ -7,13 +7,17 @@
         <variable
             name="device"
             type="com.accloud.service.ACUserDevice" />
+
+        <variable
+            name="powerStatus"
+            type="Boolean" />
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/light"
             android:layout_width="170dp"
             android:layout_height="170dp"
@@ -22,7 +26,23 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintVertical_bias="0.3"
             app:srcCompat="@drawable/light_button"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            app:activated="@{powerStatus}" />
+
+        <Button
+            android:id="@+id/power_button"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintVertical_bias="0.7"
+            android:background="@drawable/solid_gray_round"
+            android:textColor="@color/text_power_status"
+            android:text="@{powerStatus ? @string/power_on : @string/power_off}"
+            app:activated="@{powerStatus}" />
     </android.support.constraint.ConstraintLayout>
 </layout>

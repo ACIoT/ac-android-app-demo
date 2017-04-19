@@ -18,4 +18,9 @@
     <string name="device_local_online">本地在线</string>
     <string name="device_cloud_online">云端在线</string>
     <string name="device_both_online">同时在线</string>
+
+    <!-- Light -->
+    <string name="light_on_success">灯开了</string>
+    <string name="light_off_success">灯关了</string>
+    <string name="light_no_response">操作失败</string>
 </resources>

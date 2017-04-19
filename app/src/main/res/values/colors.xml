@@ -7,4 +7,5 @@
     <color name="colorPrimaryGreen">#00B0A0</color>
     <color name="colorPrimaryPurple">#7173CD</color>
     <color name="colorBackground">#303030</color>
+    <color name="colorPrimaryButton">#D7D7D7</color>
 </resources>
