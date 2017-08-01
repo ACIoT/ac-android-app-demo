@@ -9,11 +9,11 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import ablecloud.matrix.app.LocalDeviceManager;
-import ablecloud.matrix.app.Matrix;
+import ablecloud.matrix.DeviceMessage;
 import ablecloud.matrix.app.demo.databinding.ActivityListBinding;
-import ablecloud.matrix.model.DeviceMessage;
-import ablecloud.matrix.model.LocalDevice;
+import ablecloud.matrix.local.LocalDevice;
+import ablecloud.matrix.local.LocalDeviceManager;
+import ablecloud.matrix.local.MatrixLocal;
 import ablecloud.support.databinding.BindingHolder;
 import ablecloud.support.databinding.CountObservable;
 import ablecloud.support.widget.ArrayRecyclerAdapter;
@@ -64,7 +64,7 @@ public class LocalDeviceListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_list);
-        manager = Matrix.localDeviceManager();
+        manager = MatrixLocal.localDeviceManager();
         manager.registerLocalDeviceObserver(deviceObserver);
 
         adapter = new LocalDeviceAdapter();
