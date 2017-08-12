@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.accloud.ac_service_android_demo.R;
 import com.accloud.ac_service_android_demo.application.MainApplication;
 import com.accloud.cloudservice.AC;
+import com.accloud.cloudservice.ACDeviceActivator;
 import com.accloud.utils.PreferencesUtils;
 
 /**
@@ -37,6 +38,8 @@ public class ConfigurationActivity extends Activity {
     private int deviceType = 0;
     private int formatType = 0;
 
+    private ActivatorAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,57 +56,30 @@ public class ConfigurationActivity extends Activity {
         editSubDomain.setText(PreferencesUtils.getString(ConfigurationActivity.this, "subDomain", ""));
         editRouter.setText(PreferencesUtils.getString(ConfigurationActivity.this, "routerAddr", ""));
 
+        adapter = new ActivatorAdapter(this);
         typeSpinner = (Spinner) findViewById(R.id.config_type);
-        formatSpinner = (Spinner) findViewById(R.id.config_format);
-        typeSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, new String[]{"HF", "MTK", "QCA4004", "MX", "MARATA", "WM", "MARVELL", "RAK", "TI", "ESP8266", "REALTEK", "AI6060H", "MILL", "GUBEI", "COOEE"}));
-        formatSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, new String[]{"BINARY", "JSON"}));
-        switch (PreferencesUtils.getInt(this, "deviceType", AC.DEVICE_HF)) {
-            case AC.DEVICE_HF:
-                typeSpinner.setSelection(0);
-                break;
-            case AC.DEVICE_MTK:
-                typeSpinner.setSelection(1);
-                break;
-            case AC.DEVICE_QCA4004:
-                typeSpinner.setSelection(2);
-                break;
-            case AC.DEVICE_MX:
-                typeSpinner.setSelection(3);
-                break;
-            case AC.DEVICE_MURATA:
-                typeSpinner.setSelection(4);
-                break;
-            case AC.DEVICE_WM:
-                typeSpinner.setSelection(5);
-                break;
-            case AC.DEVICE_MARVELL:
-                typeSpinner.setSelection(6);
-                break;
-            case AC.DEVICE_RAK:
-                typeSpinner.setSelection(7);
-                break;
-            case AC.DEVICE_TI:
-                typeSpinner.setSelection(8);
-                break;
-            case AC.DEVICE_ESP8266:
-                typeSpinner.setSelection(9);
-                break;
-            case AC.DEVICE_REALTEK:
-                typeSpinner.setSelection(10);
-                break;
-            case AC.DEVICE_AI6060H:
-                typeSpinner.setSelection(11);
-                break;
-            case AC.DEVICE_MILL:
-                typeSpinner.setSelection(12);
-                break;
-            case AC.DEVICE_GUBEI:
-                typeSpinner.setSelection(13);
-                break;
-            case AC.DEVICE_COOEE:
-                typeSpinner.setSelection(14);
-                break;
+        typeSpinner.setAdapter(adapter);
+        typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                deviceType = adapter.getItem(position).type;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        int type = PreferencesUtils.getInt(this, "deviceType", ACDeviceActivator.HF);
+        ActivatorAdapter.Info[] infos = ActivatorAdapter.Info.values();
+        for (int i = 0; i < infos.length; i++) {
+            if (infos[i].type == type) {
+                typeSpinner.setSelection(i);
+            }
         }
+
+        formatSpinner = (Spinner) findViewById(R.id.config_format);
+        formatSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, new String[]{"BINARY", "JSON"}));
         switch (PreferencesUtils.getInt(this, "formatType", BINARY)) {
             case BINARY:
                 formatSpinner.setSelection(BINARY);
@@ -112,46 +88,6 @@ public class ConfigurationActivity extends Activity {
                 formatSpinner.setSelection(JSON);
                 break;
         }
-        typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i == 0)
-                    deviceType = AC.DEVICE_HF;
-                else if (i == 1)
-                    deviceType = AC.DEVICE_MTK;
-                else if (i == 2)
-                    deviceType = AC.DEVICE_QCA4004;
-                else if (i == 3)
-                    deviceType = AC.DEVICE_MX;
-                else if (i == 4)
-                    deviceType = AC.DEVICE_MURATA;
-                else if (i == 5)
-                    deviceType = AC.DEVICE_WM;
-                else if (i == 6)
-                    deviceType = AC.DEVICE_MARVELL;
-                else if (i == 7)
-                    deviceType = AC.DEVICE_RAK;
-                else if (i == 8)
-                    deviceType = AC.DEVICE_TI;
-                else if (i == 9)
-                    deviceType = AC.DEVICE_ESP8266;
-                else if (i == 10)
-                    deviceType = AC.DEVICE_REALTEK;
-                else if (i == 11)
-                    deviceType = AC.DEVICE_AI6060H;
-                else if (i == 12)
-                    deviceType = AC.DEVICE_MILL;
-                else if (i == 13)
-                    deviceType = AC.DEVICE_GUBEI;
-                else if (i == 14)
-                    deviceType = AC.DEVICE_COOEE;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                deviceType = PreferencesUtils.getInt(ConfigurationActivity.this, "deviceType", AC.DEVICE_HF);
-            }
-        });
         formatSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -166,6 +102,7 @@ public class ConfigurationActivity extends Activity {
                 formatType = PreferencesUtils.getInt(ConfigurationActivity.this, "formatType", BINARY);
             }
         });
+
         config = (Button) findViewById(R.id.config);
         config.setOnClickListener(new View.OnClickListener() {
             @Override

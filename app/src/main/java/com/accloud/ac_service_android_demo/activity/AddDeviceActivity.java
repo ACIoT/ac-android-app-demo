@@ -66,7 +66,7 @@ public class AddDeviceActivity extends Activity implements View.OnClickListener 
         connect.setOnClickListener(this);
 
         subDomain = PreferencesUtils.getString(this, "subDomain", Config.SUBDOMAIN);
-        deviceActivator = AC.deviceActivator(PreferencesUtils.getInt(this, "deviceType", AC.DEVICE_HF));
+        deviceActivator = AC.deviceActivator(PreferencesUtils.getInt(this, "deviceType", ACDeviceActivator.HF));
         bindMgr = AC.bindMgr();
     }
 
@@ -101,18 +101,32 @@ public class AddDeviceActivity extends Activity implements View.OnClickListener 
     public void deviceActive() {
         deviceActivator.startAbleLink(deviceActivator.getSSID(), password.getText().toString(), AC.DEVICE_ACTIVATOR_DEFAULT_TIMEOUT, new PayloadCallback<List<ACDeviceBind>>() {
             @Override
-            public void success(List<ACDeviceBind> deviceBinds) {
+            public void success(final List<ACDeviceBind> deviceBinds) {
                 //此处每激活一个设备会callback一次
 
                 //我们通过弹框，没激活成功一台设备显示一台设备。若只想绑定第一个配网成功的设备，则可以在此调stopAbleLink，同时取列表里的第一个设备直接进行绑定即可。
-                showChosenDialog(deviceBinds);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (!AddDeviceActivity.this.isDestroyed()) {
+                            showChosenDialog(deviceBinds);
+                        }
+                    }
+                });
             }
 
             @Override
-            public void error(ACException e) {
-                connect.setEnabled(true);
-                connect.setText(R.string.add_device_aty_re_activate);
-                Pop.popToast(AddDeviceActivity.this, e.getErrorCode() + "-->" + e.getMessage());
+            public void error(final ACException e) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (!AddDeviceActivity.this.isDestroyed()) {
+                            connect.setEnabled(true);
+                            connect.setText(R.string.add_device_aty_re_activate);
+                            Pop.popToast(AddDeviceActivity.this, e.getErrorCode() + "-->" + e.getMessage());
+                        }
+                    }
+                });
             }
         });
     }

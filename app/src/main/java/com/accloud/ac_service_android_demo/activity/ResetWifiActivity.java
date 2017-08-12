@@ -42,7 +42,7 @@ public class ResetWifiActivity extends Activity implements View.OnClickListener 
         password = (EditText) findViewById(R.id.reset_edit_pwd);
         back.setOnClickListener(this);
         reset.setOnClickListener(this);
-        deviceActivator = AC.deviceActivator(PreferencesUtils.getInt(this, "deviceType", AC.DEVICE_HF));
+        deviceActivator = AC.deviceActivator(PreferencesUtils.getInt(this, "deviceType", ACDeviceActivator.HF));
         wifi_name.setText(deviceActivator.getSSID());
     }
 
@@ -64,16 +64,26 @@ public class ResetWifiActivity extends Activity implements View.OnClickListener 
         deviceActivator.startAbleLink(deviceActivator.getSSID(), password.getText().toString(), physicalDeviceId, AC.DEVICE_ACTIVATOR_DEFAULT_TIMEOUT, new PayloadCallback<ACDeviceBind>() {
             @Override
             public void success(ACDeviceBind deviceBind) {
-                reset.setEnabled(true);
-                reset.setText(R.string.reset_wifi_aty_reset_device_wifi);
-                Pop.popToast(ResetWifiActivity.this, getString(R.string.reset_wifi_aty_reset_device_wifi_success));
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        reset.setEnabled(true);
+                        reset.setText(R.string.reset_wifi_aty_reset_device_wifi);
+                        Pop.popToast(ResetWifiActivity.this, getString(R.string.reset_wifi_aty_reset_device_wifi_success));
+                    }
+                });
             }
 
             @Override
-            public void error(ACException e) {
-                reset.setEnabled(true);
-                reset.setText(R.string.reset_wifi_aty_reset_device_wifi);
-                Pop.popToast(ResetWifiActivity.this, e.getErrorCode() + "-->" + e.getMessage());
+            public void error(final ACException e) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        reset.setEnabled(true);
+                        reset.setText(R.string.reset_wifi_aty_reset_device_wifi);
+                        Pop.popToast(ResetWifiActivity.this, e.getErrorCode() + "-->" + e.getMessage());
+                    }
+                });
             }
         });
     }
