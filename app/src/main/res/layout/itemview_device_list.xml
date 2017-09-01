@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="device"
+            type="com.accloud.ac_service_android_demo.model.Device" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_head_height"
+        android:activated="@{device.lightStatus==1}"
+        android:background="@drawable/device_list_item_bg">
+
+        <Button
+            android:id="@+id/closeLight"
+            android:layout_width="60dp"
+            android:layout_height="44dp"
+            android:layout_alignParentRight="true"
+            android:layout_margin="8dp"
+            android:background="@drawable/selectors_btn_button"
+            android:text="@string/list_device_adapter_closelight" />
+
+        <Button
+            android:id="@+id/openLight"
+            android:layout_width="60dp"
+            android:layout_height="44dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_toLeftOf="@id/closeLight"
+            android:background="@drawable/selectors_btn_button"
+            android:text="@string/list_device_open_light" />
+
+        <TextView
+            android:id="@+id/deviceName"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/list_head_height"
+            android:layout_marginLeft="10dp"
+            android:layout_toLeftOf="@id/openLight"
+            android:gravity="center_vertical"
+            android:text="@{device.displayDesc}"
+            android:textColor="@{device.displayColor}"
+            android:textSize="16sp" />
+    </RelativeLayout>
+</layout>

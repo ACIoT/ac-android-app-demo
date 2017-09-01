@@ -43,6 +43,10 @@ android {
         }
     }
 
+    dataBinding {
+        enabled true
+    }
+
     applicationVariants.all { variant ->
         if (variant.buildType.name == BuilderConstants.RELEASE) {
             def assembleTask = variant.assemble
@@ -57,7 +61,17 @@ android {
     }
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:support-v4:25.2.0'
+    compile 'com.android.support:appcompat-v7:25.2.0'
+    compile 'com.android.support:design:25.2.0'
+
+    compile(name: 'ablecloud-common-0.1-release', ext: 'aar')
+    compile 'in.srain.cube:ultra-ptr:1.0.11'
 }

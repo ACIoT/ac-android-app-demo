@@ -2,7 +2,6 @@ package com.accloud.ac_service_android_demo.activity;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +20,6 @@ import com.accloud.cloudservice.VoidCallback;
 import com.accloud.service.ACDeviceDataMgr;
 import com.accloud.service.ACException;
 import com.accloud.service.QueryOption;
-import com.accloud.utils.PreferencesUtils;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -36,7 +34,6 @@ import java.util.List;
 public class HistoryRecordActivity extends Activity {
     private ListView listView;
     private TextView back;
-    private TextView reset;
     private MyAdapter adapter;
     private List<LightPropertyRecord> recordList = new ArrayList<>();
     private long deviceId;
@@ -49,24 +46,15 @@ public class HistoryRecordActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_history_record);
         deviceId = getIntent().getLongExtra("deviceId", 0);
         physicalDeviceId = getIntent().getStringExtra("physicalDeviceId");
-        setContentView(R.layout.activity_history_record);
-        subDomain = PreferencesUtils.getString(this, "subDomain", Config.SUBDOMAIN);
+        subDomain = Config.SUB_DOMAIN;
         back = (TextView) findViewById(R.id.history_back);
-        reset = (TextView) findViewById(R.id.history_reset);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
-            }
-        });
-        reset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HistoryRecordActivity.this, ResetWifiActivity.class);
-                intent.putExtra("physicalDeviceId", physicalDeviceId);
-                startActivity(intent);
             }
         });
         listView = (ListView) findViewById(R.id.history_listView);
@@ -76,11 +64,6 @@ public class HistoryRecordActivity extends Activity {
         deviceDataMgr = AC.deviceDataMgr();
         //订阅设备数据
         subscribeRecord();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         getRecord();
     }
 

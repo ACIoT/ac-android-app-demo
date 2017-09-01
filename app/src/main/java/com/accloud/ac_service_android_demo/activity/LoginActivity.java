@@ -27,7 +27,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private EditText editTel;
     private EditText editPwd;
     private TextView register;
-    private TextView configuration;
     private Button loginBtn;
 
     private String tel;
@@ -45,12 +44,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         editTel = (EditText) findViewById(R.id.login_edit_tel);
         editPwd = (EditText) findViewById(R.id.login_edit_pwd);
         register = (TextView) findViewById(R.id.register);
-        configuration = (TextView) findViewById(R.id.login_configuration);
         loginBtn = (Button) findViewById(R.id.login);
 
         register.setOnClickListener(this);
         loginBtn.setOnClickListener(this);
-        configuration.setOnClickListener(this);
 
         //通过AC获取账号管理器
         accountMgr = AC.accountMgr();
@@ -60,9 +57,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     protected void onResume() {
         super.onResume();
         if (accountMgr.isLogin()) {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent(LoginActivity.this, DeviceListActivity.class);
             startActivity(intent);
-            LoginActivity.this.finish();
         }
     }
 
@@ -72,10 +68,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.register:
                 intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.login_configuration:
-                intent = new Intent(LoginActivity.this, ConfigurationActivity.class);
                 startActivity(intent);
                 break;
             case R.id.login:
@@ -99,9 +91,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             @Override
             public void success(ACUserInfo userInfo) {
                 PreferencesUtils.putLong(LoginActivity.this, "userId", userInfo.getUserId());
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                Intent intent = new Intent(LoginActivity.this, DeviceListActivity.class);
                 startActivity(intent);
-                LoginActivity.this.finish();
             }
 
             @Override

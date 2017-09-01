@@ -36,58 +36,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/config_detail"
-        android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/white">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="20dp"
-            android:gravity="center_vertical"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:text="@string/menu_aty_look_configinfo" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:gravity="center_vertical"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:src="@drawable/nav_btn_next"
-            android:background="@color/transparent" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/about"
-        android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/white">
-
-        <TextView
-            android:layout_width="90dp"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="20dp"
-            android:gravity="center_vertical"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:text="@string/menu_aty_about" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:gravity="center_vertical"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:src="@drawable/nav_btn_next"
-            android:background="@color/transparent" />
-    </RelativeLayout>
-
-    <RelativeLayout
         android:id="@+id/logout"
         android:layout_width="fill_parent"
         android:layout_height="48dp"

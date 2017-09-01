@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="countObservable"
+            type="ablecloud.support.databinding.CountObservable" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/title"
+            layout="@layout/device_list_titlebar" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ablecloud.support.widget.RefreshListView
+                android:id="@+id/device_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{countObservable.count>0?View.VISIBLE:View.GONE}"
+                app:ptr_duration_to_close="800"
+                app:ptr_duration_to_close_header="500"
+                app:ptr_keep_header_when_refresh="true"
+                app:ptr_pull_to_fresh="false"
+                app:ptr_ratio_of_header_height_to_refresh="1.1"
+                app:ptr_resistance="1.7" />
+
+            <TextView
+                android:id="@+id/empty_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="暂无设备，请添加"
+                android:visibility="@{countObservable.count>0?View.GONE:View.VISIBLE}" />
+        </FrameLayout>
+    </LinearLayout>
+
+</layout>

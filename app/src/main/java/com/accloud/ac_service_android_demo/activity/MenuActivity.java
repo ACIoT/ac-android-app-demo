@@ -16,40 +16,29 @@ import com.accloud.cloudservice.AC;
  * Created by sudongsheng on 2015/1/27.
  */
 public class MenuActivity extends Activity implements View.OnClickListener {
-    private RelativeLayout about;
     private RelativeLayout logout;
-    private RelativeLayout config;
     private TextView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        about = (RelativeLayout) findViewById(R.id.about);
         logout = (RelativeLayout) findViewById(R.id.logout);
-        config = (RelativeLayout) findViewById(R.id.config_detail);
         back = (TextView) findViewById(R.id.menu_back);
-        config.setOnClickListener(this);
         back.setOnClickListener(this);
-        about.setOnClickListener(this);
         logout.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.config_detail:
-                startActivity(new Intent(this, ConfigDetailActivity.class));
-                break;
-            case R.id.about:
-                startActivity(new Intent(this, AboutActivity.class));
-                break;
             case R.id.menu_back:
                 finish();
                 break;
             case R.id.logout:
                 //退出登录
                 AC.accountMgr().logout();
+                startActivity(new Intent(this, LoginActivity.class));
                 finish();
                 break;
         }

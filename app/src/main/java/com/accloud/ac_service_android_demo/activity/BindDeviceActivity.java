@@ -38,7 +38,7 @@ public class BindDeviceActivity extends Activity implements View.OnClickListener
         bind = (Button) findViewById(R.id.bind);
         back.setOnClickListener(this);
         bind.setOnClickListener(this);
-        subDomain = PreferencesUtils.getString(this, "subDomain", Config.SUBDOMAIN);
+        subDomain = PreferencesUtils.getString(this, "subDomain", Config.SUB_DOMAIN);
     }
 
     @Override
@@ -54,6 +54,7 @@ public class BindDeviceActivity extends Activity implements View.OnClickListener
                     @Override
                     public void success(ACUserDevice userDevice) {
                         Pop.popToast(BindDeviceActivity.this, getString(R.string.bind_device_aty_device_bind_success, userDevice.getDeviceId()));
+                        setResult(RESULT_OK);
                         finish();
                     }
 

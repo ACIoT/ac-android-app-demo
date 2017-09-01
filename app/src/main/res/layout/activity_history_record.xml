@@ -25,26 +25,15 @@
             android:focusableInTouchMode="false" />
 
         <TextView
-            android:id="@+id/history_reset"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginRight="8dp"
-            android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
-            android:textColor="@color/theme"
-            android:textSize="15sp"
-            android:text="@string/history_record_aty_reset_wifipwd" />
-
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true"
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
             android:text="@string/history_record_aty_switch_record"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_alignParentStart="true" />
     </RelativeLayout>
 
     <ListView

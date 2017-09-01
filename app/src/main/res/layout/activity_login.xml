@@ -23,16 +23,6 @@
             android:textColor="@color/black"
             android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/login_configuration"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginRight="8dp"
-            android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
-            android:textColor="@color/theme"
-            android:textSize="15sp"
-            android:text="@string/login_aty_domainconfig" />
     </RelativeLayout>
 
     <RelativeLayout
