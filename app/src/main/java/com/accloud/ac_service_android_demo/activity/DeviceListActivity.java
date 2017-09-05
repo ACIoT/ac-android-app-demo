@@ -1,23 +1,25 @@
 package com.accloud.ac_service_android_demo.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.accloud.ac_service_android_demo.R;
 import com.accloud.ac_service_android_demo.config.Config;
-import com.accloud.ac_service_android_demo.controller.Light;
 import com.accloud.ac_service_android_demo.databinding.ActivityDeviceListBinding;
 import com.accloud.ac_service_android_demo.databinding.ItemviewDeviceListBinding;
 import com.accloud.ac_service_android_demo.model.Device;
-import com.accloud.ac_service_android_demo.utils.Pop;
+import com.accloud.ac_service_android_demo.utils.DeviceApi;
+import com.accloud.ac_service_android_demo.utils.ToastUtil;
 import com.accloud.cloudservice.AC;
 import com.accloud.cloudservice.PayloadCallback;
 import com.accloud.cloudservice.VoidCallback;
@@ -42,7 +44,7 @@ import in.srain.cube.views.ptr.indicator.PtrIndicator;
  * Created by liuxiaofeng on 01/09/2017.
  */
 
-public class DeviceListActivity extends Activity implements View.OnClickListener {
+public class DeviceListActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_BIND_DEVICE = 100;
     private DeviceListAdapter adapter;
@@ -51,17 +53,18 @@ public class DeviceListActivity extends Activity implements View.OnClickListener
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("设备列表");
+
         adapter = new DeviceListAdapter();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_device_list);
         binding.setCountObservable(CountObservable.create(adapter));
         binding.deviceList.getRefreshView().setAdapter(adapter);
         binding.deviceList.addPtrUIHandler(ptrUIHandler);
-        binding.title.findViewById(R.id.left_menu).setOnClickListener(this);
-        binding.title.findViewById(R.id.right_add_device).setOnClickListener(this);
 
         AC.deviceDataMgr().registerPropertyReceiver(propertyReceiver);
         AC.deviceDataMgr().registerOnlineStatusListener(onlineStatusListener);
-        getDeviceList();
+        fetchDeviceList();
     }
 
     @Override
@@ -79,20 +82,32 @@ public class DeviceListActivity extends Activity implements View.OnClickListener
             return;
         }
         if (requestCode == REQUEST_CODE_BIND_DEVICE) {
-            getDeviceList();
+            fetchDeviceList();
         }
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.left_menu:
-                startActivity(new Intent(this, MenuActivity.class));
-                break;
-            case R.id.right_add_device:
-                startActivityForResult(new Intent(this, AddDeviceActivity.class), REQUEST_CODE_BIND_DEVICE);
-                break;
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_device_list_aty, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.add_device) {
+            startActivityForResult(new Intent(this, AddDeviceActivity.class), REQUEST_CODE_BIND_DEVICE);
+        } else if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+        } else if (item.getItemId() == R.id.sign_out) {
+            signOut();
         }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void signOut() {
+        AC.accountMgr().logout();
+        startActivity(new Intent(this, SignInActivity.class));
+        finish();
     }
 
     private ACDeviceDataMgr.PropertyReceiver propertyReceiver = new ACDeviceDataMgr.PropertyReceiver() {
@@ -135,7 +150,7 @@ public class DeviceListActivity extends Activity implements View.OnClickListener
 
         @Override
         public void onUIRefreshBegin(PtrFrameLayout frame) {
-            getDeviceList();
+            fetchDeviceList();
         }
 
         @Override
@@ -149,7 +164,7 @@ public class DeviceListActivity extends Activity implements View.OnClickListener
         }
     };
 
-    public void getDeviceList() {
+    public void fetchDeviceList() {
         AC.bindMgr().listDevicesWithStatus(new PayloadCallback<List<ACUserDevice>>() {
             @Override
             public void success(List<ACUserDevice> deviceList) {
@@ -235,13 +250,13 @@ public class DeviceListActivity extends Activity implements View.OnClickListener
         binding.openLight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Light(v.getContext()).openLight(device.getPhysicalDeviceId(), null);
+                DeviceApi.openLight(device.getPhysicalDeviceId(), null);
             }
         });
         binding.closeLight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Light(v.getContext()).closeLight(device.getPhysicalDeviceId(), null);
+                DeviceApi.closeLight(device.getPhysicalDeviceId(), null);
             }
         });
     }
@@ -250,13 +265,13 @@ public class DeviceListActivity extends Activity implements View.OnClickListener
         AC.bindMgr().unbindDevice(Config.SUB_DOMAIN, device.getDeviceId(), new VoidCallback() {
             @Override
             public void success() {
-                Pop.popToast(DeviceListActivity.this, getString(R.string.main_aty_delete_device_success));
-                getDeviceList();
+                ToastUtil.show(DeviceListActivity.this, getString(R.string.main_aty_delete_device_success));
+                fetchDeviceList();
             }
 
             @Override
             public void error(ACException e) {
-                Pop.popToast(DeviceListActivity.this, e.getErrorCode() + "-->" + e.getMessage());
+                ToastUtil.show(DeviceListActivity.this, e.getErrorCode() + "-->" + e.getMessage());
             }
         });
     }

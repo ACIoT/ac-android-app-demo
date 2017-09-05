@@ -8,7 +8,4 @@ public class Config {
     public static final long MAJOR_DOMAIN_ID = 3;
     public static final String SUB_DOMAIN = "demo";
     public static final long SUB_DOMAIN_ID = 4;
-
-
-    public static final int LIGHT_MSGCODE = 68;
 }

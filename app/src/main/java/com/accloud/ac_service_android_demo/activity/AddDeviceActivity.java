@@ -1,12 +1,13 @@
 package com.accloud.ac_service_android_demo.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -15,7 +16,7 @@ import android.widget.TextView;
 
 import com.accloud.ac_service_android_demo.R;
 import com.accloud.ac_service_android_demo.config.Config;
-import com.accloud.ac_service_android_demo.utils.Pop;
+import com.accloud.ac_service_android_demo.utils.ToastUtil;
 import com.accloud.cloudservice.AC;
 import com.accloud.cloudservice.PayloadCallback;
 import com.accloud.service.ACDeviceFind;
@@ -31,7 +32,7 @@ import butterknife.ButterKnife;
  * Created by liuxiaofeng on 05/09/2017.
  */
 
-public class AddDeviceActivity extends Activity {
+public class AddDeviceActivity extends AppCompatActivity {
 
     @BindView(R.id.swipe)
     SwipeRefreshLayout swipeRefreshLayout;
@@ -47,6 +48,9 @@ public class AddDeviceActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("添加设备");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         setContentView(R.layout.activity_add_device);
         ButterKnife.bind(this);
         swipeRefreshLayout.setOnRefreshListener(onRefreshListener);
@@ -54,6 +58,14 @@ public class AddDeviceActivity extends Activity {
         listView.setAdapter(adapter);
         listView.setEmptyView(emptyView);
         emptyView.setText(getString(R.string.empty_list, getString(R.string.local_device)));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private SwipeRefreshLayout.OnRefreshListener onRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
@@ -77,7 +89,7 @@ public class AddDeviceActivity extends Activity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Pop.popToast(AddDeviceActivity.this, "findDevice error: " + e.getMessage());
+                            ToastUtil.show(AddDeviceActivity.this, "findDevice error: " + e.getMessage());
                             swipeRefreshLayout.setRefreshing(false);
                         }
                     });
@@ -116,7 +128,7 @@ public class AddDeviceActivity extends Activity {
 
                         @Override
                         public void error(ACException e) {
-                            Pop.popToast(AddDeviceActivity.this, "绑定失败" + e.getMessage());
+                            ToastUtil.show(AddDeviceActivity.this, "绑定失败" + e.getMessage());
                         }
                     });
                 }

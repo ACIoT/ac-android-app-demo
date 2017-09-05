@@ -72,13 +72,9 @@ public class Device extends BaseObservable {
         String onlineDesc = "";
         switch (onlineStatus) {
             case ACUserDevice.NETWORK_ONLINE:
-                onlineDesc = "云端在线";
-                break;
             case ACUserDevice.LOCAL_ONLINE:
-                onlineDesc = "局域网在线";
-                break;
             case ACUserDevice.BOTH_ONLINE:
-                onlineDesc = "局域网和云端同时在线";
+                onlineDesc = "在线";
                 break;
             default:
                 onlineDesc = "不在线";
