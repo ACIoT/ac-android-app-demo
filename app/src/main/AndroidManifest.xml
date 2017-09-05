@@ -27,8 +27,6 @@
         <activity android:name=".activity.DeviceListActivity" />
         <activity android:name=".activity.BindDeviceActivity" />
         <activity android:name=".activity.MenuActivity" />
-        <activity android:name=".activity.HistoryRecordActivity" />
-
     </application>
 
 </manifest>

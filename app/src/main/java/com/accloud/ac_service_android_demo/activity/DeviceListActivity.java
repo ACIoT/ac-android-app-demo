@@ -218,15 +218,6 @@ public class DeviceListActivity extends Activity implements View.OnClickListener
     }
 
     private void setListener(final Device device, ItemviewDeviceListBinding binding) {
-        binding.getRoot().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), HistoryRecordActivity.class);
-                intent.putExtra("deviceId", device.getDeviceId());
-                intent.putExtra("physicalDeviceId", device.getPhysicalDeviceId());
-                v.getContext().startActivity(intent);
-            }
-        });
         binding.getRoot().setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
