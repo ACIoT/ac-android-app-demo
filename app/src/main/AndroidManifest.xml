@@ -25,7 +25,7 @@
         </activity>
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.DeviceListActivity" />
-        <activity android:name=".activity.BindDeviceActivity" />
+        <activity android:name=".activity.AddDeviceActivity" />
         <activity android:name=".activity.MenuActivity" />
     </application>
 

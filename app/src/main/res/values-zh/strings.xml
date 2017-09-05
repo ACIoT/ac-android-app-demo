@@ -210,5 +210,7 @@
 
     <string name="list_device_adapter_closelight">关灯</string>
     <string name="list_device_open_light">开灯</string>
+    <string name="empty_list">无%1$s，下拉刷新</string>
+    <string name="local_device">局域网设备</string>
 
 </resources>

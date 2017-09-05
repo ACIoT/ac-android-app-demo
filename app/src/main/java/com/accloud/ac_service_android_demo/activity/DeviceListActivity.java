@@ -90,7 +90,7 @@ public class DeviceListActivity extends Activity implements View.OnClickListener
                 startActivity(new Intent(this, MenuActivity.class));
                 break;
             case R.id.right_add_device:
-                startActivityForResult(new Intent(this, BindDeviceActivity.class), REQUEST_CODE_BIND_DEVICE);
+                startActivityForResult(new Intent(this, AddDeviceActivity.class), REQUEST_CODE_BIND_DEVICE);
                 break;
         }
     }
