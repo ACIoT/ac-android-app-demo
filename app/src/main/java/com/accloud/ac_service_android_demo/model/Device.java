@@ -58,6 +58,8 @@ public class Device extends BaseObservable {
     public void setOnline(boolean online) {
         this.online = online;
         notifyPropertyChanged(BR.online);
+        notifyPropertyChanged(BR.displayDesc);
+        notifyPropertyChanged(BR.displayColor);
     }
 
     @Bindable
@@ -68,6 +70,7 @@ public class Device extends BaseObservable {
     public void setPowerOn(boolean powerOn) {
         this.powerOn = powerOn;
         notifyPropertyChanged(BR.powerOn);
+        notifyPropertyChanged(BR.switchBtnText);
     }
 
     @Bindable
@@ -82,6 +85,6 @@ public class Device extends BaseObservable {
 
     @Bindable
     public String getSwitchBtnText() {
-        return isOnline() ? "ON" : "OFF";
+        return isPowerOn() ? "ON" : "OFF";
     }
 }

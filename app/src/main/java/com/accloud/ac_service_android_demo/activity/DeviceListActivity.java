@@ -150,11 +150,11 @@ public class DeviceListActivity extends AppCompatActivity {
             @Override
             public void success(List<ACUserDevice> deviceList) {
                 binding.swipeRefreshLayout.setRefreshing(false);
-                ArrayList<Device> devices = toDevices(deviceList);
-                subScribeProperty(devices);
-                subScribeOnlineStatus(devices);
                 DeviceManager.getInstance().clear();
-                DeviceManager.getInstance().addAll(devices);
+                DeviceManager.getInstance().addAll(toDevices(deviceList));
+                fetchDeviceProperty(DeviceManager.getInstance().getDevices());
+                subScribeProperty(DeviceManager.getInstance().getDevices());
+                subScribeOnlineStatus(DeviceManager.getInstance().getDevices());
                 adapter.notifyDataSetChanged();
             }
 
@@ -163,6 +163,27 @@ public class DeviceListActivity extends AppCompatActivity {
                 binding.swipeRefreshLayout.setRefreshing(false);
             }
         });
+    }
+
+    private void fetchDeviceProperty(ArrayList<Device> devices) {
+        for (final Device device : devices) {
+            AC.deviceDataMgr().fetchCurrentProperty(device.getSubDomain(), device.getDeviceId(), new PayloadCallback<String>() {
+                @Override
+                public void success(String property) {
+                    try {
+                        int lightStatus = new JSONObject(property).getInt("switch");
+                        device.setPowerOn(lightStatus == 1);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void error(ACException e) {
+
+                }
+            });
+        }
     }
 
     private ArrayList<Device> toDevices(List<ACUserDevice> deviceList) {

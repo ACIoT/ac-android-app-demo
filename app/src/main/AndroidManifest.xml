@@ -12,7 +12,7 @@
 
     <application
         android:name=".application.MainApplication"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@mipmap/launcher"
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.WelcomeActivity"
