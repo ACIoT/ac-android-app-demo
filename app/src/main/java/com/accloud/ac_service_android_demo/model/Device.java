@@ -5,7 +5,6 @@ import android.databinding.Bindable;
 import android.graphics.Color;
 
 import com.accloud.ac_service_android_demo.BR;
-import com.accloud.service.ACUserDevice;
 
 /**
  * Created by liuxiaofeng on 01/09/2017.
@@ -13,23 +12,26 @@ import com.accloud.service.ACUserDevice;
 
 public class Device extends BaseObservable {
 
-    @Bindable
+    private String subDomain;
     private long deviceId;
-
-    @Bindable
     private String physicalDeviceId;
+    private boolean online;
+    private boolean powerOn;
 
-    @Bindable
-    private int onlineStatus;
-
-    @Bindable
-    private int lightStatus;
-
-    public Device(long deviceId, String physicalDeviceId, int onlineStatus, int lightStatus) {
+    public Device(String subDomain, long deviceId, String physicalDeviceId, boolean online, boolean powerOn) {
+        this.subDomain = subDomain;
         this.deviceId = deviceId;
         this.physicalDeviceId = physicalDeviceId;
-        this.onlineStatus = onlineStatus;
-        this.lightStatus = lightStatus;
+        this.online = online;
+        this.powerOn = powerOn;
+    }
+
+    public String getSubDomain() {
+        return subDomain;
+    }
+
+    public void setSubDomain(String subDomain) {
+        this.subDomain = subDomain;
     }
 
     public long getDeviceId() {
@@ -38,7 +40,6 @@ public class Device extends BaseObservable {
 
     public void setDeviceId(long deviceId) {
         this.deviceId = deviceId;
-        notifyPropertyChanged(BR.deviceId);
     }
 
     public String getPhysicalDeviceId() {
@@ -47,47 +48,40 @@ public class Device extends BaseObservable {
 
     public void setPhysicalDeviceId(String physicalDeviceId) {
         this.physicalDeviceId = physicalDeviceId;
-        notifyPropertyChanged(BR.physicalDeviceId);
     }
 
-    public int getOnlineStatus() {
-        return onlineStatus;
+    @Bindable
+    public boolean isOnline() {
+        return online;
     }
 
-    public void setOnlineStatus(int onlineStatus) {
-        this.onlineStatus = onlineStatus;
-        notifyPropertyChanged(BR.onlineStatus);
+    public void setOnline(boolean online) {
+        this.online = online;
+        notifyPropertyChanged(BR.online);
     }
 
-    public int getLightStatus() {
-        return lightStatus;
+    @Bindable
+    public boolean isPowerOn() {
+        return powerOn;
     }
 
-    public void setLightStatus(int lightStatus) {
-        this.lightStatus = lightStatus;
-        notifyPropertyChanged(BR.lightStatus);
+    public void setPowerOn(boolean powerOn) {
+        this.powerOn = powerOn;
+        notifyPropertyChanged(BR.powerOn);
     }
 
+    @Bindable
     public String getDisplayDesc() {
-        String onlineDesc = "";
-        switch (onlineStatus) {
-            case ACUserDevice.NETWORK_ONLINE:
-            case ACUserDevice.LOCAL_ONLINE:
-            case ACUserDevice.BOTH_ONLINE:
-                onlineDesc = "在线";
-                break;
-            default:
-                onlineDesc = "不在线";
-                break;
-        }
-        return physicalDeviceId + "(" + onlineDesc + ")";
+        return physicalDeviceId + "(" + (isOnline() ? "在线" : "不在线") + ")";
     }
 
+    @Bindable
     public int getDisplayColor() {
-        if (onlineStatus == ACUserDevice.OFFLINE) {
-            return Color.parseColor("#ffaaaaaa");
-        } else {
-            return Color.parseColor("#ff48f24f");
-        }
+        return isOnline() ? Color.parseColor("#ff48f24f") : Color.parseColor("#ffaaaaaa");
+    }
+
+    @Bindable
+    public String getSwitchBtnText() {
+        return isOnline() ? "ON" : "OFF";
     }
 }

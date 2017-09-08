@@ -37,9 +37,6 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
         ButterKnife.bind(this);
         getSupportActionBar().setTitle(getString(R.string.login_aty_title));
-        if (AC.accountMgr().isLogin()) {
-            startActivity(new Intent(this, DeviceListActivity.class));
-        }
     }
 
     @OnClick({R.id.signIn, R.id.signUp})
@@ -71,6 +68,7 @@ public class SignInActivity extends AppCompatActivity {
                 PreferencesUtils.putLong(SignInActivity.this, "userId", acUserInfo.getUserId());
                 Intent intent = new Intent(SignInActivity.this, DeviceListActivity.class);
                 startActivity(intent);
+                SignInActivity.this.finish();
             }
 
             @Override

@@ -7,4 +7,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowTitleSize">0dp</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar.TranslucentStatus" parent="AppTheme.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar.TranslucentStatus.FullScreen" parent="AppTheme.NoActionBar.TranslucentStatus">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
 </resources>

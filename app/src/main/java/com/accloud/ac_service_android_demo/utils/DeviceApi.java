@@ -53,6 +53,9 @@ public class DeviceApi {
                             }
                         } else {
                             ToastUtil.show(AC.context, AC.context.getString(R.string.main_aty_openlight_fail));
+                            if (voidCallback != null) {
+                                voidCallback.error(new ACException(100, "开灯失败"));
+                            }
                         }
                     }
                 }, new Consumer<Throwable>() {

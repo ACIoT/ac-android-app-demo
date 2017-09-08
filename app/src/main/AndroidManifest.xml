@@ -15,17 +15,20 @@
         android:icon="@drawable/ic_launcher"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.SignInActivity"
-            android:launchMode="singleTask">
+            android:name=".activity.WelcomeActivity"
+            android:theme="@style/AppTheme.NoActionBar.TranslucentStatus.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.SignInActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".activity.SignUpActivity" />
         <activity android:name=".activity.DeviceListActivity" />
+        <activity android:name=".activity.DeviceControlActivity" />
         <activity android:name=".activity.AddDeviceActivity" />
-        <activity android:name=".activity.MenuActivity" />
     </application>
 
 </manifest>

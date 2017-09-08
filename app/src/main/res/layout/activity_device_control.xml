@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="device"
+            type="com.accloud.ac_service_android_demo.model.Device" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/lightIcon"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:src="@drawable/light_button"
+                app:activated="@{device.powerOn}" />
+
+            <TextView
+                android:id="@+id/lightSwitchBtn"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/solid_gray_round"
+                android:gravity="center"
+                android:text="@{device.switchBtnText}"
+                android:textColor="@color/text_power_status"
+                app:activated="@{device.powerOn}" />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>
